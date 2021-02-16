@@ -1,8 +1,17 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
-    <a class="navbar-brand" href="#">ToDo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <router-link to="/">
+      <a class="navbar-brand" href="#">ToDo</a>
+    </router-link>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -30,24 +39,26 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2"
-               type="search"
-               placeholder="Поиск задачи"
-               aria-label="Search"
-               @input="searchMatches($event.target.value)"
-               :value="searchMatchesValue">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Поиск задачи"
+          aria-label="Search"
+          @input="searchMatches($event.target.value)"
+          :value="searchMatchesValue"
+        />
       </form>
     </div>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 <script>
 export default {
-  el: 'main-layout',
+  el: "main-layout",
   data() {
     return {
-      searchMatchesValue: '',
-    }
+      searchMatchesValue: ""
+    };
   },
   methods: {
     searchMatches(value) {
@@ -57,14 +68,12 @@ export default {
       this.todos.forEach((todo, i) => {
         console.log(todo.text.match(value));
         if (todo.text.match(value) && value) {
-          this.$refs.myTodo[i].classList.add('active')
+          this.$refs.myTodo[i].classList.add("active");
         } else {
-          this.$refs.myTodo[i].classList.remove('active')
+          this.$refs.myTodo[i].classList.remove("active");
         }
-      })
-
+      });
     }
   }
-
-}
+};
 </script>

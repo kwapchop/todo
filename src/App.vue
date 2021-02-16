@@ -1,5 +1,7 @@
 <template>
-  <main-layout/>
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
 <style lang="scss">
@@ -25,9 +27,19 @@
 }
 </style>
 <script>
-import MainLayout from "./layout/main-layout";
+import homeLayout from "@/layout/home-layout";
+import mainLayout from "@/layout/main-layout";
 
 export default {
-  components: {MainLayout}
-}
+  computed: {
+    layout() {
+      console.log(this.$route.meta);
+      return (this.$route.meta.layout || "home") + "-layout";
+    }
+  },
+  components: {
+    homeLayout,
+    mainLayout
+  }
+};
 </script>

@@ -1,17 +1,33 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Todo from "../views/Todo.vue";
+import Login from "../views/Login.vue";
+import Registration from "../views/Registration.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
+    meta: { layout: "home" },
     component: Home
+  },
+  {
+    path: "/auth/login",
+    name: "Login",
+    meta: { layout: "home" },
+    component: Login
+  },
+  {
+    path: "/auth/register",
+    name: "Registration",
+    meta: { layout: "home" },
+    component: Registration
   },
   {
     path: "/todo",
     name: "Todo",
-    component: () =>
-        import("../views/Todo.vue")
+    meta: { layout: "main" },
+    component: Todo
   }
 ];
 
@@ -21,3 +37,5 @@ const router = createRouter({
 });
 
 export default router;
+
+// <main-layout/>

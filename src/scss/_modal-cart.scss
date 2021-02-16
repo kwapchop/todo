@@ -1,3 +1,62 @@
+@mixin bp($point, $type: "min", $dimension: "width") {
+  @if $type == "max" {
+    $point: $point - 1;
+  }
+
+  @media (#{$type}-#{$dimension}: $point) {
+    @content;
+  }
+}
+
+$img: '/images';
+
+$font-1: 'Ubuntu', 'Trebuchet MS', sans-serif;
+$font-2: 'Ubuntu', 'Georgia', serif;
+$font-3: 'Ubuntu', 'Georgia', serif;
+$font-4: 'Dobrozrachniy', 'Trebuchet MS', sans-serif;
+
+$font-size: 15px;
+$line-height: 1.4;
+
+$input-height: 2.75rem;
+
+$border-radius: .375rem;
+
+$section-text-padding: 1.5rem;
+$section-text-padding-mobile: 1.25rem;
+
+$color-1: #c83f51;
+$color-2: #d4b794;
+$color-3: #be860e;
+$color-4: #55788d;
+$color-5: #c82d2d;
+
+$color-text: #1b1b1b;
+$color-text-light: #939393;
+
+$color-gray: #ece9e9;
+$color-gray-light: #f2f2f2;
+$color-gray-dark: #c6c6c6;
+
+$color-red: #dc3545;
+$color-green: #3d9f42;
+$color-blue: #004C98;
+
+$grid-columns: 12;
+$grid-gutter-width: 1rem;
+$grid-container-width: 1200px;
+
+$screen-nano: 300px;
+$screen-xs: 480px;
+$screen-600: 560px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1240px;
+$screen-1400: 1400px;
+$screen-1500: 1500px;
+$screen-1600: 1600px;
+
+
 .modal-cart {
   .modal-dialog {
     width: 600px;
@@ -21,7 +80,7 @@
     font-size: 31px;
     line-height: 150%;
     color: #000;
-    font-family: $font-2;
+    font-family: $font-1;
     @include bp($screen-600, max) {
       font-size: 21px;
       text-align: center;
@@ -61,12 +120,13 @@
   }
 
   &__new-content {
+    margin: 50px auto 10px;
     transition: all 0.5s ease;
     text-align: center;
     padding: 32px 30px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
     box-sizing: border-box;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 10px rgb(230,230,230);
     border-radius: 10px;
     width: 600px;
     @include bp($screen-lg, max) {
@@ -315,12 +375,14 @@
     }
 
     &--column {
-      padding-top:10px;
+      padding-top: 10px;
       flex-direction: column;
-      button{
+
+      button {
         margin-top: 10px;
       }
-      .modal-cart__retail--size{
+
+      .modal-cart__retail--size {
         font-size: 20px;
       }
     }
