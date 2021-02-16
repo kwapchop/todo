@@ -1,0 +1,9 @@
+@mixin bp($point, $type: "min", $dimension: "width") {
+  @if $type == "max" {
+    $point: $point - 1;
+  }
+
+  @media (#{$type}-#{$dimension}: $point) {
+    @content;
+  }
+}

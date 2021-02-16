@@ -1,0 +1,46 @@
+body {
+    overflow-y: scroll;
+}
+
+.icons-arrow-rotate {
+    transition: all 0.5s ease;
+    transform: rotate(-90deg);
+}
+
+.input-todo-wrapper {
+    margin-bottom: -2px;
+}
+
+.input-todo {
+    border: none;
+    padding: 2px;
+    border-bottom: 2px solid #80808040;
+}
+
+.input-todo:focus {
+    outline: none;
+}
+
+.img-rotater {
+    transform: rotate(0deg);
+}
+
+.todo-active {
+    height: 0;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.todo-active.open {
+    height: 400px;
+    margin-top: 1.5rem;
+}
+
+.schedule {
+    width: 500px;
+    min-width: 500px;
+    height: 300px;
+    min-height: 300px;
+    border: 1px solid black;
+}
