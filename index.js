@@ -29,20 +29,37 @@ app.post("/todo", jsonParser, (req, res) => {
 
 app.post("/auth/login", jsonParser, (req, res) => {
   //Логика и обработка данных
+  async function run() {
+    try {
+      await mongoClient.connect();
+      const database = mongoClient.db("usersdb");
+      const collection = database.collection("users");
+      const query = { login: req.body.login };
+      const user = await collection.findOne(query);
+      console.log(user);
+      return res.sendStatus(200);
+    } finally {
+      await mongoClient.close();
+    }
+  }
+  run().catch(console.dir);
+
 
   //Сохранение в базу данных
-  mongoClient.connect(function(err, client) {
-    const db = client.db("usersdb");
-    const collection = db.collection("users");
-    let user = { login: req.body.phone, password: req.body.password };
-    collection.insertOne(user, function(err, result) {
-      if (err) {
-        return console.log(err);
-      }
-      client.close();
-      return res.sendStatus(200);
-    });
-  });
+  // mongoClient.connect(function(err, client) {
+  //   const db = client.db("usersdb");
+  //   const collection = db.collection("users");
+  //   let user = { login: req.body.phone, password: req.body.password };
+  //   const person = await collection.find({login:req.body.phone})
+  //
+  //   // collection.find(user, function(err, result) {
+  //   //   if (err) {
+  //   //     return console.log(err);
+  //   //   }
+  //   //   client.close();
+  //   //   return res.sendStatus(200);
+  //   // });
+  // });
 });
 
 app.post("/auth/register", jsonParser, (req, res) => {
